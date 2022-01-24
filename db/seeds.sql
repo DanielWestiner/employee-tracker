@@ -15,13 +15,13 @@ VALUES ("CEO", 250000, 1),
        ("Engineer", 90000, 4),
        ("Account Manager", 83000, 4);
        
-INSERT INTO employee (first_name, last_name, role_id, manager_id)
+INSERT INTO employees (first_name, last_name, role_id, manager_id)
 VALUES ("Franklin", "Hart", 1, NULL),
-       ("Sterling" "Hayden", 2, 1),
+       ("Sterling", "Hayden", 2, 1),
        ("Doralee", "Rhodes", 3, NULL),
-       ("Violet", "Newstead", 4, 2),
+       ("Violet", "Newstead", 4, 3),
        ("Judy", "Bernly", 5, NULL),
-       ("Bob", "Enright", 6, 3),
+       ("Bob", "Enright", 6, 5),
        ("Chuck", "Strell", 7, NULL),
-       ("Reynaldo", "Villalobos", 8, 4);
+       ("Reynaldo", "Villalobos", 8, 7);
        
