@@ -114,7 +114,7 @@ const addEmployee = () => {
       name: "lastName",
     },
     {
-      type: "list",
+      type: "choice",
       message: "Please enter employee's role",
       choices: selectRole(),
       name: "role",
@@ -123,9 +123,23 @@ const addEmployee = () => {
       type: "choice",
       message: "Who is their Manager",
       choices: selectManager(),
-      name: "lastName",
-    },
-  ]);
+      name: "manager",
+    }
+  ])
+  .then(res => {
+    let idRole = selectRole().indexOf(res.role) + 1;
+    let idManager = selectManager().indexOf(res.manager) + 1;
+    db.query(
+      "INSERT INTO employees SET ?",
+      {
+        first_name: res.firstName,
+        last_name: res.lastName,
+        role_id: idRole,
+        manager_id: idManager
+      },
+      startInq()
+    )
+  });
 };
 
 // Setting up selectRole function from add Employee prompt
@@ -225,7 +239,7 @@ const addRole = () => {
           },
         ])
         //IS THIS POSSIBLE??
-        .then(function (res) {
+        .then(res => {
           db.query("INSERT INTO roles SET ?", {
             title: res.roleTitle,
             salary: res.roleSalary,
@@ -233,11 +247,12 @@ const addRole = () => {
           // db.query("INSERT INTO department SET ?", {
           //   name: res.roleDept,
           // }),
-            function (err) {
-              if (err) throw err;
-              console.table(res);
-              startInq();
-            };
+            // function (err) {
+            //   if (err) throw err;
+            //   console.table(res);
+            //   startInq();
+            // };
+            startInq();
         });
     }
   );
@@ -262,19 +277,19 @@ const addDepartment = () => {
         name: "name",
       },
     ])
-    .then(function (res) {
+    .then( res => {
       db.query(
         "INSERT INTO department SET ?",
         {
           name: res.name,
-        },
-        function (err) {
-          if (err) throw err;
-          console.table(res);
-          startInq();
-        }
-      );
+        // },
+        // function (err) {
+        //   if (err) throw err;
+        //   console.table(res);
+        //   startInq();
+        // }
+      // );
     });
-};
+});}
 
 startInq();
