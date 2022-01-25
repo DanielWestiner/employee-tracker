@@ -31,3 +31,7 @@ CREATE TABLE employees (
   REFERENCES employees(id)
   ON DELETE SET NULL
 );
+
+SELECT * FROM department;
+SELECT * FROM roles;
+SELECT * FROM employees;
